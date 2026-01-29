@@ -10,28 +10,43 @@ const ContactSection = () => {
     setIsSubmitting(true);
 
     const formData = new FormData(e.currentTarget);
+    const object = Object.fromEntries(formData);
+
     // Add Web3Forms access key
-    // Set up a free account at web3forms.com to get your key
     const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
-    if (accessKey) {
-      formData.append('access_key', accessKey);
+
+    if (!accessKey) {
+      toast.error('Web3Forms Access Key is missing. Please check your environment variables.');
+      setIsSubmitting(false);
+      return;
     }
+
+    const json = JSON.stringify({
+      ...object,
+      access_key: accessKey,
+    });
 
     try {
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        body: formData,
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: json,
       });
 
-      const data = await response.json();
+      const result = await response.json();
 
-      if (data.success) {
+      if (result.success) {
         toast.success('Message sent successfully!');
         (e.target as HTMLFormElement).reset();
       } else {
-        toast.error('Something went wrong. Please try again.');
+        console.error('Web3Forms Error:', result);
+        toast.error(result.message || 'Something went wrong. Please try again.');
       }
     } catch (error) {
+      console.error('Submission Error:', error);
       toast.error('Failed to send message. Please check your connection.');
     } finally {
       setIsSubmitting(false);

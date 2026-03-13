@@ -24,7 +24,7 @@ const Navbar = () => {
         <div className="hidden md:flex items-center gap-4">
           {/* Resume Button */}
           <a
-            href="/resume.pdf"
+            href="/Perfect Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="brutalist-btn bg-primary flex items-center gap-2"

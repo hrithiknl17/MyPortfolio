@@ -19,7 +19,7 @@ const AboutMeSection = () => {
                 {/* Bio */}
                 <div className="mb-8">
                     <p className="text-lg leading-relaxed mb-4">
-                        I’m a Computer Science graduate with a strong interest in data analysis and problem-solving.
+                        I’m a Information Science graduate with a strong interest in data analysis and problem-solving.
                     </p>
                     <p className="text-lg leading-relaxed">
 

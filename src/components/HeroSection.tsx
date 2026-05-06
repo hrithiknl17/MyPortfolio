@@ -62,7 +62,7 @@ const HeroSection = () => {
 
           {/* Description */}
           <p className="text-base lg:text-lg max-w-md">
-            Computer Science graduate and {' '}
+            Information Science graduate and {' '}
             <span className="hidden lg:inline"><br /></span>
             aspiring Full Stack Developer based in India.
           </p>
